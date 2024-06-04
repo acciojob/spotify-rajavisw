@@ -186,7 +186,7 @@ public class SpotifyRepository {
     }
 
     public Playlist findPlaylist(String mobile, String playlistTitle) throws Exception {
-        if(mobile==null || playlistTitle==null || mobile.equals("") || playlistTitle.equals("")) return null;
+        if(mobile==null || playlistTitle==null || mobile.isEmpty() || playlistTitle.isEmpty()) return null;
 
         User user=null;
         for(User user1:users){
@@ -213,9 +213,6 @@ public class SpotifyRepository {
         List<User> userList=playlistListenerMap.get(playlist);
         for(User u:userList){
             if(u.getMobile().equals(user.getMobile())) return null;
-        }
-        if(userList==null){
-            userList=new ArrayList<>();
         }
         userList.add(user);
         playlistListenerMap.put(playlist,userList);

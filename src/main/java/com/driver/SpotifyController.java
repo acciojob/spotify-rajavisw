@@ -60,7 +60,7 @@ public class SpotifyController {
     }
 
     @PutMapping("/find-playlist")
-    public String findPlaylist(@RequestParam(name = "mobile") String mobile,@RequestParam(name = "playlistTitle") String playlistTitle) throws Exception{
+    public String findPlaylist(String mobile, String playlistTitle) throws Exception{
         //Find the playlist with given title and add user as listener of that playlist and update user accordingly
         //If the user is creater or already a listener, do nothing
         //If the user does not exist, throw "User does not exist" exception

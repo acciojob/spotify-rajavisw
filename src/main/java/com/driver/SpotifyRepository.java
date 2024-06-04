@@ -264,20 +264,22 @@ public class SpotifyRepository {
         }
         song.setLikes(userList.size());
 
+        for(Artist artist:artistAlbumMap.keySet()){
+            int likes=0;
+            for(Album album:artistAlbumMap.get(artist)){
+                for(Song song1:albumSongMap.get(album)){
+                    likes+=song1.getLikes();
+                }
+            }
+            artist.setLikes(likes);
+        }
+
         songLikeMap.put(song,userList);
         return song;
     }
 
     public String mostPopularArtist() {
-        for(Artist artist:artistAlbumMap.keySet()){
-            int likes=0;
-            for(Album album:artistAlbumMap.get(artist)){
-                for(Song song:albumSongMap.get(album)){
-                    likes+=song.getLikes();
-                }
-            }
-            artist.setLikes(likes);
-        }
+
 
         String popularArtist="";
         int maxLikes=Integer.MIN_VALUE;

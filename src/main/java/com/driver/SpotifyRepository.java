@@ -186,7 +186,7 @@ public class SpotifyRepository {
     }
 
     public Playlist findPlaylist(String mobile, String playlistTitle) throws Exception {
-        if(mobile==null || playlistTitle==null) return null;
+        if(mobile==null || playlistTitle==null || mobile.equals("") || playlistTitle.equals("")) return null;
 
         User user=null;
         for(User user1:users){
@@ -195,7 +195,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-        if(user==null) throw new RuntimeException("User does not exist");
+        if(user==null) throw new Exception("User does not exist");
 
         for(User u:creatorPlaylistMap.keySet()){
             if(u.getMobile().equals(user.getMobile())) return null;
@@ -208,7 +208,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-        if(playlist==null) throw new RuntimeException("Playlist does not exist");
+        if(playlist==null) throw new Exception("Playlist does not exist");
 
         List<User> userList=playlistListenerMap.get(playlist);
         for(User u:userList){

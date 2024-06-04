@@ -214,6 +214,9 @@ public class SpotifyRepository {
         for(User u:userList){
             if(u.getMobile().equals(user.getMobile())) return null;
         }
+        if(userList==null){
+            userList=new ArrayList<>();
+        }
         userList.add(user);
         playlistListenerMap.put(playlist,userList);
 
